@@ -12,7 +12,6 @@
 #include <string.h> // for memmove
 #include <errno.h>
 #include <limits.h> // for MB_LEN_MAX
-#include <wctype.h>
 
 
 // Implementations were stolen from the MSL implementations
