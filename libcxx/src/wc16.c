@@ -9,10 +9,9 @@
 //
 #include <stdarg.h>
 #include <stdlib.h>
-#include <string.h>	// for memmove
+#include <string.h> // for memmove
 #include <errno.h>
-#include <limits.h>		// for MB_LEN_MAX
-#include <mbusafecrt.h>
+#include <limits.h> // for MB_LEN_MAX
 #include <wctype.h>
 
 
@@ -20,81 +19,81 @@
 /*size_t
 mbstowcs(wchar_t * wcstring, const char * mbstring, size_t nwchars)
 {
-	size_t rtn = 0;
-   	errno = rtcpal_mbstowcs_s(&rtn, wcstring, nwchars, mbstring, _TRUNCATE);
-	return rtn;
+    size_t rtn = 0;
+       errno = rtcpal_mbstowcs_s(&rtn, wcstring, nwchars, mbstring, _TRUNCATE);
+    return rtn;
 }*/
 
- int wmemcmp(const wchar_t * src1, const wchar_t * src2, size_t n)
+int wmemcmp(const wchar_t * src1, const wchar_t * src2, size_t n)
 {
-	int diff = 0;
+    int diff = 0;
 
-	while (n)
-	{
-		diff = *src1 - *src2;
-		if (diff) break;
-		src1++;
-		src2++;
-		n--;
-	}
+    while (n)
+    {
+        diff = *src1 - *src2;
+        if (diff) break;
+        src1++;
+        src2++;
+        n--;
+    }
 
-	return(diff);
+    return(diff);
 }
 
 
 wchar_t *
 wmemchr(const wchar_t * src, wchar_t val, size_t n)
 {
-	while (n)
-	{
-		if (*src == val) return (wchar_t*)(src);
-		src++;
-		n--;
-	}
+    while (n)
+    {
+        if (*src == val) return (wchar_t*)(src);
+        src++;
+        n--;
+    }
 
-	return(NULL);
+    return(NULL);
 }
 
 
 wchar_t *
 wmemmove(wchar_t * dst, const wchar_t * src, size_t n)
 {
-	return (wchar_t*)( memmove(dst, src, n * sizeof(wchar_t)) );
+    return (wchar_t*)( memmove(dst, src, n * sizeof(wchar_t)) );
 }
 
 
 wchar_t *
 wmemcpy(wchar_t * dst, const wchar_t * src, size_t n)
 {
-	return (wchar_t*)( memcpy(dst, src, n * sizeof(wchar_t)) );
+    return (wchar_t*)( memcpy(dst, src, n * sizeof(wchar_t)) );
 }
 
 
 wchar_t *
 wmemset(wchar_t * dst, wchar_t val, size_t n)
 {
-	wchar_t* save = dst;
+    wchar_t* save = dst;
 
-	while (n)
-	{
-		*dst++ = val;
-		n--;
-	}
+    while (n)
+    {
+        *dst++ = val;
+        n--;
+    }
 
-	return save;
+    return save;
 }
 
 
 size_t
 wcslen(const wchar_t * str)
 {
-	size_t len = 0;
+    size_t len = 0;
 
-	while(*str++) {
-		len++;
-	}
+    while(*str++) {
+        len++;
+    }
 
-	return len;
+    return len;
 }
 
 
@@ -117,15 +116,15 @@ wcsnlen(const wchar_t * str, size_t maxsize)
 int
 wcscmp(const wchar_t * str1, const wchar_t * str2)
 {
-	while(*str1 && *str2 && *str1 == *str2) {
-		str1++;
-		str2++;
-	}
+    while(*str1 && *str2 && *str1 == *str2) {
+        str1++;
+        str2++;
+    }
 
 #if (WCHAR_MAX > 0xFFFFu)
     return ((uint32_t)(*str1)) - ((uint32_t)(*str2));
 #else
-	return (short)(*str1) - (short)(*str2);
+    return (short)(*str1) - (short)(*str2);
 #endif
 }
 
@@ -156,13 +155,13 @@ wcsicmp(const wchar_t * str1, const wchar_t * str2)
 wchar_t *
 wcscpy(wchar_t * dst, const wchar_t * src)
 {
-	wchar_t * p = dst;
+    wchar_t * p = dst;
 
-	while((*p++ = *src++) != 0) {
-		;
-	}
+    while((*p++ = *src++) != 0) {
+        ;
+    }
 
-	return dst;
+    return dst;
 }
 
 /*
@@ -299,30 +298,30 @@ wcscspn (const wchar_t * string, const wchar_t * control)
 wchar_t *
 wcslwr(wchar_t *str)
 {
-	wchar_t * saved = str;
+    wchar_t * saved = str;
 
-	while (*str)
-	{
-		*str = towlower (*str);
-		str++;
-	}
+    while (*str)
+    {
+        *str = towlower (*str);
+        str++;
+    }
 
-	return saved;
+    return saved;
 }
 
 
 int
 wcslwr_s(wchar_t * _Str, size_t _SizeInWords)
 {
-	int count = 0;
-	while (*_Str && count < _SizeInWords)
-	{
-		*_Str = towlower (*_Str);
-		_Str++;
-		count++;
-	}
+    int count = 0;
+    while (*_Str && count < _SizeInWords)
+    {
+        *_Str = towlower (*_Str);
+        _Str++;
+        count++;
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
