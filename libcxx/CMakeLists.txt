@@ -572,6 +572,7 @@ function(cxx_add_basic_build_flags target)
     endif()
   endif()
   target_compile_options(${target} PUBLIC "${LIBCXX_ADDITIONAL_COMPILE_FLAGS}")
+  target_compile_options(${target} PUBLIC -fPIC)
 endfunction()
 
 # Exception flags =============================================================
