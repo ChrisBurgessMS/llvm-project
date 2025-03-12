@@ -190,6 +190,14 @@ if (APPLE AND LLVM_USE_SANITIZER)
   endif()
 endif()
 
+# Add a list of flags to 'LIBCXX_COMPILE_FLAGS'.
+macro(add_compile_flags)
+  foreach(f ${ARGN})
+    list(APPEND LIBCXX_COMPILE_FLAGS ${f})
+  endforeach()
+endmacro()
+
+add_compile_flags("${LIBCXX_ADDITIONAL_COMPILE_FLAGS}")
 split_list(LIBCXX_COMPILE_FLAGS)
 split_list(LIBCXX_LINK_FLAGS)
 

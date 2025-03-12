@@ -517,13 +517,6 @@ include(HandleLibCXXABI) # Setup the ABI library flags
 # so they don't get transformed into -Wno and -errors respectively.
 remove_flags(-Wno-pedantic -pedantic-errors -pedantic)
 
-# Add a list of flags to 'LIBCXX_COMPILE_FLAGS'.
-macro(add_compile_flags)
-  foreach(f ${ARGN})
-    list(APPEND LIBCXX_COMPILE_FLAGS ${f})
-  endforeach()
-endmacro()
-
 # Required flags ==============================================================
 function(cxx_add_basic_build_flags target)
 
@@ -578,7 +571,6 @@ function(cxx_add_basic_build_flags target)
       target_compile_definitions(${target} PRIVATE -D_LIBCPP_LINK_RT_LIB)
     endif()
   endif()
-  add_compile_flags("${LIBCXX_ADDITIONAL_COMPILE_FLAGS}")
 endfunction()
 
 # Exception flags =============================================================
